@@ -21,6 +21,19 @@
                     @endforelse
                 </ul>
             </div>
+            <div>
+                <h3>Comments</h3>
+                <div>
+                    @forelse ($team->comments as $comment)
+                        <div>
+                            <h5>{{ $comment->content }} <span>{{ $comment->created_at }}</span></h5>
+                            <p>{{ $comment->user->name }}</p>
+                        </div>
+                    @empty
+                        <p>This team has no players</p>
+                    @endforelse
+                </div>
+            </div>
         </div>
     </div>
 
