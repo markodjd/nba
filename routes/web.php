@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\CommentsController;
 use App\Http\Controllers\PlayersController;
 use App\Http\Controllers\TeamsController;
 use Illuminate\Support\Facades\Route;
@@ -17,6 +18,8 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', [TeamsController::class, 'index'])->name('teams');
+
+Route::post('/teams/{team}/comments', [CommentsController::class, 'store'])->middleware('auth');
 
 Route::get('/teams/{team}', [TeamsController::class, 'show'])->name('team');
 

@@ -25,13 +25,28 @@
                 <h3>Comments</h3>
                 <div>
                     @forelse ($team->comments as $comment)
-                        <div>
-                            <h5>{{ $comment->content }} <span>{{ $comment->created_at }}</span></h5>
-                            <p>{{ $comment->user->name }}</p>
+                        <div class="border p-2 w-50 bg-light mb-3">
+                            <p class="m-0"><strong>{{ $comment->user->name }}</strong></p>
+                            <p class="m-0">{{ $comment->content }} <span>{{ $comment->created_at }}</span></p>
                         </div>
                     @empty
-                        <p>This team has no players</p>
+                        <p>No comments.</p>
                     @endforelse
+                    @auth
+                        <form method="POST" action="/teams/{{ $team->id }}/comments" class="w-50 mt-3">
+                            @csrf
+                            <input type="hidden" name="user_id" value="{{ auth()->user()->id }}">
+                            <input type="hidden" name="team_id" value="{{ $team->id }}">
+                            <div class=" form-group mt-3">
+                                <textarea rows="3" class="form-control" id="content" name="content"
+                                    placeholder="Comment..."></textarea>
+                                @error('content')
+                                    <p class="text-danger">{{ $message }}</p>
+                                @enderror
+                            </div>
+                            <button type="submit" class="btn btn-primary mt-3">Submit</button>
+                        </form>
+                    @endauth
                 </div>
             </div>
         </div>
