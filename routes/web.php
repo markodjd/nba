@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CommentsController;
+use App\Http\Controllers\NewsController;
 use App\Http\Controllers\PlayersController;
 use App\Http\Controllers\TeamsController;
 use Illuminate\Support\Facades\Route;
@@ -24,6 +25,10 @@ Route::post('/teams/{team}/comments', [CommentsController::class, 'store'])->mid
 Route::get('/teams/{team}', [TeamsController::class, 'show'])->name('team');
 
 Route::get('/players/{player}', [PlayersController::class, 'show'])->name('player');
+
+Route::get('/news', [NewsController::class, 'index']);
+
+Route::get('/news/{news}', [NewsController::class, 'show'])->name('news');
 
 Route::group(['middleware' => 'guest'], function () {
     Route::get('/register', [AuthController::class, 'get_register_form']);

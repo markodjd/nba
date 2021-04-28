@@ -10,6 +10,9 @@
             <li class="nav-item active">
                 <a class="nav-link" href="{{ route('teams') }}">Home</a>
             </li>
+            <li class="nav-item active">
+                <a class="nav-link" href="/news">News</a>
+            </li>
         </ul>
         <ul class="navbar-nav mr-auto">
             @auth

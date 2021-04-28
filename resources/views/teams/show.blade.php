@@ -24,16 +24,6 @@
             <div>
                 <h3>Comments</h3>
                 <div>
-                    @forelse ($team->comments as $comment)
-                        <div class="border p-2 w-50 bg-light mb-3">
-                            <p class="m-0"><strong>{{ $comment->user->name }}</strong> -
-                                <span>{{ $comment->created_at->diffForHumans() }}</span>
-                            </p>
-                            <p class="m-0">{{ $comment->content }}</p>
-                        </div>
-                    @empty
-                        <p>No comments.</p>
-                    @endforelse
                     @auth
                         <form method="POST" action="/teams/{{ $team->id }}/comments" class="w-50 mt-3">
                             @csrf
@@ -49,6 +39,16 @@
                             <button type="submit" class="btn btn-primary mt-3">Submit</button>
                         </form>
                     @endauth
+                    @forelse ($team->comments as $comment)
+                        <div class="border p-2 w-50 bg-light mt-3">
+                            <p class="m-0"><strong>{{ $comment->user->name }}</strong> -
+                                <span>{{ $comment->created_at->diffForHumans() }}</span>
+                            </p>
+                            <p class="m-0">{{ $comment->content }}</p>
+                        </div>
+                    @empty
+                        <p>No comments.</p>
+                    @endforelse
                 </div>
             </div>
         </div>
