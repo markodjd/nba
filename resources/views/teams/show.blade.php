@@ -21,6 +21,17 @@
                     @endforelse
                 </ul>
             </div>
+            <div class="mb-5 mt-5">
+                <h4>Related news</h4>
+                <ul>
+                    @forelse ($team->paginateNews() as $singleNews)
+                        <li><a href="{{ route('news', ['news' => $singleNews->id]) }}">{{ $singleNews->title }}</a></li>
+                    @empty
+                        <p>No news for this team</p>
+                    @endforelse
+                </ul>
+            </div>
+            {{ $team->paginateNews()->links() }}
             <div>
                 <h3>Comments</h3>
                 <div>
