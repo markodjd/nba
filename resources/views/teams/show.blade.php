@@ -26,8 +26,10 @@
                 <div>
                     @forelse ($team->comments as $comment)
                         <div class="border p-2 w-50 bg-light mb-3">
-                            <p class="m-0"><strong>{{ $comment->user->name }}</strong></p>
-                            <p class="m-0">{{ $comment->content }} <span>{{ $comment->created_at }}</span></p>
+                            <p class="m-0"><strong>{{ $comment->user->name }}</strong> -
+                                <span>{{ $comment->created_at->diffForHumans() }}</span>
+                            </p>
+                            <p class="m-0">{{ $comment->content }}</p>
                         </div>
                     @empty
                         <p>No comments.</p>
